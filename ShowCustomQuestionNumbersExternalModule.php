@@ -7,7 +7,7 @@ class ShowCustomQuestionNumbersExternalModule extends \ExternalModules\AbstractE
 
     #region Hooks
 
-    function redcap_data_entry_form($project_id, $record, $instrument, $event_id, $group_id, $repeat_instance) {
+    function redcap_data_entry_form_top($project_id, $record, $instrument, $event_id, $group_id, $repeat_instance) {
         $enabled_forms = $this->getProjectSetting("forms");
         
         if (in_array($instrument, $enabled_forms, true)) {
@@ -39,6 +39,14 @@ class ShowCustomQuestionNumbersExternalModule extends \ExternalModules\AbstractE
         }
         if (count($custom_question_numbers) == 0) return;
 
+        $css = strip_tags($this->getProjectSetting("css") ?? "");
+        $prefix = filter_tags($this->getProjectSetting("prefix") ?? "");
+        $suffix = filter_tags($this->getProjectSetting("suffix") ?? "");
+
+        if (!empty($css)) {
+            print \RCView::style(".form-custom-question-number { $css }");
+        }
+
         // Initialize the module with all necessary data
         require_once "classes/InjectionHelper.php";
         $this->framework->initializeJavascriptModuleObject();
@@ -49,6 +57,8 @@ class ShowCustomQuestionNumbersExternalModule extends \ExternalModules\AbstractE
             "debug" => $this->getProjectSetting("debug") == "1",
             "version" => $this->VERSION,
             "questionNumbers" => $custom_question_numbers,
+            "prefix" => $prefix,
+            "suffix" => $suffix,
         ]);
         print \RCView::script("DE_RUB_ShowCustomQestionNumbers.init($config, $jsmo_name);", true);
     }

@@ -21,13 +21,33 @@
         {
             "key": "debug",
             "name": "Toggle debug mode",
+            "tt_name": "config_debug",
             "type": "checkbox"
         },
         {
             "key": "forms",
             "name": "Enable display of custom question numbers on this form",
+            "tt_name": "config_forms",
             "type": "form-list",
             "repeatable": true
+        },
+        {
+            "key": "css",
+            "name": "<i>Optional:</i> Custom CSS (enter rules directly, no curly braces):<br><i>These will be applied to the class <code>form-custom-question-number</code></i>",
+            "tt_name": "config_css",
+            "type": "textarea"
+        },
+        {
+            "key": "prefix",
+            "name": "<i>Optional:</i> Prefix for custom question numbers (may contain HTML)",
+            "tt_name": "config_prefix",
+            "type": "text"
+        },
+        {
+            "key": "suffix",
+            "name": "<i>Optional:</i> Suffix for custom question numbers (may contain HTML; do close any opened tags!)",
+            "tt_name": "config_suffix",
+            "type": "text"
         }
     ]
 }
