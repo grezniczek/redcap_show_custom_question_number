@@ -42,7 +42,7 @@ class ShowCustomQuestionNumbersExternalModule extends \ExternalModules\AbstractE
         // Initialize the module with all necessary data
         require_once "classes/InjectionHelper.php";
         $this->framework->initializeJavascriptModuleObject();
-        $jsmo_name = json_encode($this->framework->getJavascriptModuleObjectName());
+        $jsmo_name = $this->framework->getJavascriptModuleObjectName();
         $ih = InjectionHelper::init($this);
         $ih->js("js/showCustomQuestionNumbers.js");
         $config = json_encode([
