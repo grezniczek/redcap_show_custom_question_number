@@ -45,4 +45,5 @@ To override the styling in a specific form, something like this can be added to 
 
 Version | Description
 ------- | -------------------
+v1.0.1  | Minor bug fix (prevents a harmless exception occuring in PHP8+).
 v1.0.0  | Initial release.
