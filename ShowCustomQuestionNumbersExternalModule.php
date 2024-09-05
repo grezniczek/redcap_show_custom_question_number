@@ -8,7 +8,7 @@ class ShowCustomQuestionNumbersExternalModule extends \ExternalModules\AbstractE
     #region Hooks
 
     function redcap_data_entry_form_top($project_id, $record, $instrument, $event_id, $group_id, $repeat_instance) {
-        $enabled_forms = $this->getProjectSetting("forms");
+        $enabled_forms = $this->getProjectSetting("forms") ?? [];
         
         if (in_array($instrument, $enabled_forms, true)) {
             $this->show_custom_question_numbers($GLOBALS["Proj"], $instrument);
